@@ -1,4 +1,4 @@
-# Weather App (SE-2210 Arman Erzen)
+# Weather App
 
 This project shows the weather information of a city entered by the user and shows the city on a map based on latitude and longitude.
 ## APIs used
