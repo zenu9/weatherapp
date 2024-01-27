@@ -3,9 +3,9 @@
 This project shows the weather information of a city entered by the user and shows the city on a map based on latitude and longitude.
 ## APIs used
 
-- OpenWeatherMap API - Get the key on the official OpenWeatherMap website.
-- Chuck Norris API - Get the key from the official RapidAPI website.
-- The Videogame Releases API - Get the key from the official RapidAPI website.
+- OpenWeatherMap API - Get the key on the official OpenWeatherMap website. Provides access to current weather data.
+- Chuck Norris API - Get the key from the official RapidAPI website. Shows random jokes about Chuck Norris.
+- The Videogame Releases API - Get the key from the official RapidAPI website. Provides up-to-date information on video game releases scheduled for the upcoming month.
 
 ## How to Run
 
