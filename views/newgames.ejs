@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Game Releases</title>
+    <link rel="stylesheet" href="other.css">
+</head>
+<body>
+    <h1>New Games Releasing this month</h1>
+    <ul>
+        <% games.forEach(game => { %>
+            <li>
+                <p><%= game.title %></p>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

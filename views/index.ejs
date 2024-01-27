@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <form action="/weather" method="get">
+            <input type="text" name="city" placeholder="Enter city name">
+            <button type="submit">Get Info</button>
+        </form>
+        
+        <% if(error) { %>
+            <p><%= error %></p>
+        <% } else if(weather) { %>
+            <p><b><%= weather.name %></b></p>
+            <img src="https://openweathermap.org/img/wn/<%=weather.weather[0].icon%>.png" alt="Weather Icon">
+            <p>Temperature: <%= weather.main.temp %>&deg;C</p>
+            <p>Description: <%= weather.weather[0].description %></p>
+            <p>Coordinates: Latitude - <%= weather.coord.lat %>, Longitude - <%= weather.coord.lon %></p>
+            <p>Feels Like: <%= weather.main.feels_like %>&deg;C</p>
+            <p>Humidity: <%= weather.main.humidity %>%</p>
+            <p>Pressure: <%= weather.main.pressure %> hPa</p>
+            <p>Wind Speed: <%= weather.wind.speed %> m/s</p>
+            <p>Country Code: <%= weather.sys.country %></p>
+            <p>Rain Volume (last 3 hours): <%= weather.rain && weather.rain['3h'] ? weather.rain['3h'] : 'N/A' %></p>
+        <% } %>
+        <div id="map"></div>
+    </div>
+    <script>
+        <% if(weather) { %>
+            var cityLat = <%= weather.coord.lat %>;
+            var cityLon = <%= weather.coord.lon %>;
+
+            var map = L.map('map').setView([cityLat, cityLon], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            var marker = L.marker([cityLat, cityLon]).addTo(map);
+        <% } %>
+    </script>
+  </body>
+</html>
